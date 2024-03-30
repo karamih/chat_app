@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
         HomePage.routeName: (context) => const HomePage(),
         ChatPage.routeName: (context) => const ChatPage()
       },
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }

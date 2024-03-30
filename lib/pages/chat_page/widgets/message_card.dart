@@ -20,23 +20,20 @@ class MessageCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
-              width: width * 0.10,
-              height: width * 0.10,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle),
-              child: SvgPicture.asset('assets/images/account-avatar-profile-user-13-svgrepo-com.svg')
-              // const Icon(
-              //   Icons.adb,
-              //   color: Colors.black26,
-              // ),
-            ),
+                width: width * 0.10,
+                height: width * 0.10,
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                child: SvgPicture.asset(
+                    'assets/images/account-avatar-profile-user-13-svgrepo-com.svg')),
             const SizedBox(
               width: 8,
             ),
             Container(
               padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
               constraints: BoxConstraints(
-                  maxWidth: width * 0.5, minHeight: height * 0.05),
+                  minWidth: width * 0.2,
+                  maxWidth: width * 0.5,
+                  minHeight: height * 0.05),
               decoration: BoxDecoration(
                   color: Colors.black26,
                   borderRadius: const BorderRadius.all(Radius.circular(10))
@@ -74,7 +71,9 @@ class MessageCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
               constraints: BoxConstraints(
-                  maxWidth: width * 0.5, minHeight: height * 0.05),
+                  minWidth: width * 0.2,
+                  maxWidth: width * 0.5,
+                  minHeight: height * 0.05),
               decoration: BoxDecoration(
                   color: Colors.black26,
                   borderRadius: const BorderRadius.all(Radius.circular(10))
@@ -103,12 +102,11 @@ class MessageCard extends StatelessWidget {
               width: 8,
             ),
             Container(
-              width: width * 0.10,
-              height: width * 0.10,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle),
-              child: SvgPicture.asset('assets/images/account-avatar-profile-user-8-svgrepo-com.svg')
-            )
+                width: width * 0.10,
+                height: width * 0.10,
+                decoration: const BoxDecoration(shape: BoxShape.circle),
+                child: SvgPicture.asset(
+                    'assets/images/account-avatar-profile-user-8-svgrepo-com.svg'))
           ],
         ),
       );

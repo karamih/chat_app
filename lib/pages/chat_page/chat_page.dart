@@ -1,8 +1,12 @@
 import 'package:chat_app/pages/chat_page/bloc/messages/message_cubit.dart';
+import 'package:chat_app/pages/chat_page/bloc/messages/message_status.dart';
 import 'package:chat_app/pages/chat_page/widgets/main_sender.dart';
 import 'package:chat_app/pages/chat_page/widgets/message_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+
+import 'model/message.dart';
 
 class ChatPage extends StatelessWidget {
   static String routeName = '/chat_page';
@@ -40,15 +44,37 @@ class ChatPage extends StatelessWidget {
           height: height,
           child: Column(
             children: [
-              Expanded(child: BlocBuilder<MessageCubit, MessageState>(
-                builder: (context, state) {
-                  return ListView.builder(
-                      itemBuilder: (context, index) => MessageCard(
-                          sender: state.messages[index]!.sender,
-                          content: state.messages[index]?.content),
-                      itemCount: state.messages.length);
-                },
-              )),
+              Expanded(
+                child: BlocBuilder<MessageCubit, MessageState>(
+                  builder: (context, state) {
+                    final lastMessage = state.messages.lastOrNull;
+                    if (lastMessage != null &&
+                        lastMessage.sender == Sender.ai &&
+                        lastMessage.isLoading is MessageStatusLoading) {
+                      return Center(
+                        child: LoadingAnimationWidget.staggeredDotsWave(
+                            color: Colors.grey, size: 35),
+                      );
+                    } else {
+                      return ListView.builder(
+                        itemBuilder: (context, index) {
+                          final message = state.messages[index];
+                          if (message?.content != null &&
+                              message!.content!.isNotEmpty) {
+                            return MessageCard(
+                              sender: message.sender,
+                              content: message.content,
+                            );
+                          } else {
+                            return Container();
+                          }
+                        },
+                        itemCount: state.messages.length,
+                      );
+                    }
+                  },
+                ),
+              ),
               const Divider(
                 color: Colors.black26,
                 thickness: 2,

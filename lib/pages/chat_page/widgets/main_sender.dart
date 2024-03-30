@@ -1,4 +1,5 @@
 import 'package:chat_app/pages/chat_page/bloc/messages/message_cubit.dart';
+import 'package:chat_app/pages/chat_page/bloc/messages/message_status.dart';
 import 'package:chat_app/pages/chat_page/bloc/send_mic_icon_change/sender_icon_cubit.dart';
 import 'package:chat_app/pages/chat_page/model/message.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,17 @@ class MainSender extends StatelessWidget {
                   child: TextField(
                     controller: textEditingController,
                     onChanged: (value) {
-                      print(value);
+                      BlocProvider.of<SenderIconCubit>(context)
+                          .senderIconEvent(value);
+                    },
+                    onSubmitted: (value) {
+                      Message message = Message(
+                          sender: Sender.user,
+                          content: value,
+                          isLoading: MessageStatusReady());
+                      textEditingController.clear();
+                      BlocProvider.of<MessageCubit>(context)
+                          .messageEvent(message);
                       BlocProvider.of<SenderIconCubit>(context)
                           .senderIconEvent(value);
                     },
@@ -68,7 +79,8 @@ class MainSender extends StatelessWidget {
                       onPressed: () {
                         Message message = Message(
                             sender: Sender.user,
-                            content: textEditingController.text);
+                            content: textEditingController.text,
+                            isLoading: MessageStatusReady());
                         textEditingController.clear();
                         BlocProvider.of<MessageCubit>(context)
                             .messageEvent(message);

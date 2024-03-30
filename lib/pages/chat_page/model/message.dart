@@ -5,7 +5,7 @@ enum Sender {
 
 class Message {
   final Sender sender;
-  final String content;
+  final String? content;
 
   // final DateTime timeStamp;
 

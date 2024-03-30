@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../model/message.dart';
 
 class MessageCard extends StatelessWidget {
   final Sender sender;
-  final String content;
+  final String? content;
 
   const MessageCard({super.key, required this.sender, required this.content});
 
@@ -22,11 +23,12 @@ class MessageCard extends StatelessWidget {
               width: width * 0.10,
               height: width * 0.10,
               decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.white70),
-              child: const Icon(
-                Icons.adb,
-                color: Colors.black26,
-              ),
+                  shape: BoxShape.circle),
+              child: SvgPicture.asset('assets/images/account-avatar-profile-user-13-svgrepo-com.svg')
+              // const Icon(
+              //   Icons.adb,
+              //   color: Colors.black26,
+              // ),
             ),
             const SizedBox(
               width: 8,
@@ -39,9 +41,24 @@ class MessageCard extends StatelessWidget {
                   color: Colors.black26,
                   borderRadius: const BorderRadius.all(Radius.circular(10))
                       .copyWith(bottomLeft: const Radius.circular(0))),
-              child: Text(
-                content,
-                style: const TextStyle(color: Colors.white70),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "2Byte",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.teal[600]),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    content!,
+                    style: const TextStyle(color: Colors.white70),
+                  ),
+                ],
               ),
             )
           ],
@@ -62,9 +79,24 @@ class MessageCard extends StatelessWidget {
                   color: Colors.black26,
                   borderRadius: const BorderRadius.all(Radius.circular(10))
                       .copyWith(bottomRight: const Radius.circular(0))),
-              child: Text(
-                content,
-                style: const TextStyle(color: Colors.white70),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    "User",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.teal[600]),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    content!,
+                    style: const TextStyle(color: Colors.white70),
+                  ),
+                ],
               ),
             ),
             const SizedBox(
@@ -74,11 +106,8 @@ class MessageCard extends StatelessWidget {
               width: width * 0.10,
               height: width * 0.10,
               decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.white70),
-              child: const Icon(
-                Icons.person,
-                color: Colors.black26,
-              ),
+                  shape: BoxShape.circle),
+              child: SvgPicture.asset('assets/images/account-avatar-profile-user-8-svgrepo-com.svg')
             )
           ],
         ),

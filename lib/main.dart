@@ -6,8 +6,13 @@ import 'package:chat_app/pages/splash/bloc/splash_cubit.dart';
 import 'package:chat_app/pages/splash/splash_scrren.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
+
+import 'config/secrets.dart';
 
 void main() {
+  Gemini.init(apiKey: Secrets.geminiApiKey);
+
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
       create: (context) => SplashCubit(),

@@ -45,7 +45,7 @@ class ChatPage extends StatelessWidget {
                   return ListView.builder(
                       itemBuilder: (context, index) => MessageCard(
                           sender: state.messages[index]!.sender,
-                          content: state.messages[index]!.content),
+                          content: state.messages[index]?.content),
                       itemCount: state.messages.length);
                 },
               )),

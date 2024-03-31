@@ -1,5 +1,6 @@
 import 'package:chat_app/pages/chat_page/chat_page.dart';
 import 'package:chat_app/pages/home_page/widgets/main_card.dart';
+import 'package:chat_app/pages/profile_page/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -44,16 +45,20 @@ class HomePage extends StatelessWidget {
                   children: [
                     MainCard(
                       title: 'Chat',
-                      pathIcon: 'assets/images/8139242_3826346.svg',
+                      pathIcon: 'assets/images/12781044_5081333.svg',
                       isActive: true,
                       onPressed: () {
                         Navigator.pushNamed(context, ChatPage.routeName);
                       },
                     ),
-                    const MainCard(
-                        title: 'Image',
-                        pathIcon: 'assets/images/12781044_5081333.svg',
-                        isActive: false)
+                    MainCard(
+                      title: 'Profile',
+                      pathIcon: 'assets/images/8139242_3826346.svg',
+                      isActive: true,
+                      onPressed: () {
+                        Navigator.pushNamed(context, ProfilePage.routeName);
+                      },
+                    )
                   ],
                 ),
               ),

@@ -1,4 +1,7 @@
+import 'package:chat_app/pages/profile_page/bloc/avatar/avatar_cubit.dart';
+import 'package:chat_app/pages/profile_page/bloc/username/user_name_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../model/message.dart';
@@ -81,12 +84,16 @@ class MessageCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    "User",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.teal[600]),
+                  BlocBuilder<UserNameCubit, UserNameState>(
+                    builder: (context, state) {
+                      return Text(
+                        state.userName,
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.teal[600]),
+                      );
+                    },
                   ),
                   const SizedBox(
                     height: 8,
@@ -105,8 +112,11 @@ class MessageCard extends StatelessWidget {
                 width: width * 0.10,
                 height: width * 0.10,
                 decoration: const BoxDecoration(shape: BoxShape.circle),
-                child: SvgPicture.asset(
-                    'assets/images/account-avatar-profile-user-8-svgrepo-com.svg'))
+                child: BlocBuilder<AvatarCubit, AvatarState>(
+                  builder: (context, state) {
+                    return SvgPicture.asset(state.avatarPath);
+                  },
+                ))
           ],
         ),
       );

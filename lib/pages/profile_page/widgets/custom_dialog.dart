@@ -70,7 +70,7 @@ class CustomDialog {
                           ),
                         ),
                         backgroundColor: Colors.green[300],
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -88,7 +88,7 @@ class CustomDialog {
                           ),
                         ),
                         backgroundColor: Colors.red[300],
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -135,7 +135,7 @@ class CustomDialog {
                         ),
                       ),
                       backgroundColor: Colors.green[300],
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(seconds: 1),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -153,7 +153,7 @@ class CustomDialog {
                         ),
                       ),
                       backgroundColor: Colors.red[300],
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(seconds: 1),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -223,7 +223,7 @@ class CustomDialog {
                           ),
                         ),
                         backgroundColor: Colors.green[300],
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -241,7 +241,7 @@ class CustomDialog {
                           ),
                         ),
                         backgroundColor: Colors.red[300],
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
@@ -289,7 +289,7 @@ class CustomDialog {
                         ),
                       ),
                       backgroundColor: Colors.green[300],
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(seconds: 1),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -307,7 +307,7 @@ class CustomDialog {
                         ),
                       ),
                       backgroundColor: Colors.red[300],
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(seconds: 1),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),

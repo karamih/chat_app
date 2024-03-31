@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
         ChatPage.routeName: (context) => const ChatPage(),
         ProfilePage.routeName: (context) => const ProfilePage()
       },
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }

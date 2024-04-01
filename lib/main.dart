@@ -10,35 +10,44 @@ import 'package:chat_app/pages/splash/bloc/splash_cubit.dart';
 import 'package:chat_app/pages/splash/splash_scrren.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gemini/flutter_gemini.dart';
 
-import 'config/secrets.dart';
+import 'config/storage/shared_prefrences.dart';
 
-void main() {
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider(
-      create: (context) => SplashCubit(),
-    ),
-    BlocProvider(
-      create: (context) => SenderIconCubit(),
-    ),
-    BlocProvider(
-      create: (context) => MessageCubit(),
-    ),
-    BlocProvider(
-      create: (context) => AvatarCubit(),
-    ),
-    BlocProvider(
-      create: (context) => UserNameCubit(),
-    ),
-    BlocProvider(
-      create: (context) => GeminiApiKeyCubit(),
-    )
-  ], child: const MyApp()));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final SharedPrefrencesStorage storage = SharedPrefrencesStorage();
+  await storage.initStorage();
+
+  runApp(MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SplashCubit(),
+        ),
+        BlocProvider(
+          create: (context) => SenderIconCubit(),
+        ),
+        BlocProvider(
+          create: (context) => MessageCubit(),
+        ),
+        BlocProvider(
+          create: (context) => AvatarCubit(storage),
+        ),
+        BlocProvider(
+          create: (context) => UserNameCubit(storage),
+        ),
+        BlocProvider(
+          create: (context) => GeminiApiKeyCubit(storage),
+        )
+      ],
+      child: MyApp(
+        storage: storage,
+      )));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final SharedPrefrencesStorage storage;
+
+  const MyApp({super.key, required this.storage});
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +57,17 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         SplashScreen.routeName: (context) => const SplashScreen(),
-        HomePage.routeName: (context) => const HomePage(),
-        ChatPage.routeName: (context) => const ChatPage(),
-        ProfilePage.routeName: (context) => const ProfilePage()
+        HomePage.routeName: (context) => HomePage(
+              storage: storage,
+            ),
+        ChatPage.routeName: (context) => ChatPage(
+              storage: storage,
+            ),
+        ProfilePage.routeName: (context) => ProfilePage(
+              storage: storage,
+            )
       },
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }

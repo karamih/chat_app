@@ -51,15 +51,10 @@ class MainCard extends StatelessWidget {
         width: width * 0.42,
         height: width * 0.7,
         decoration: BoxDecoration(
-            color: Colors.black26,
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: const [
-              BoxShadow(
-                  color: Colors.black12,
-                  spreadRadius: -5,
-                  offset: Offset(0, 1),
-                  blurRadius: 2),
-            ]),
+          color: Colors.black26,
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: Colors.black54),
+        ),
         child: Column(
           children: [
             const SizedBox(

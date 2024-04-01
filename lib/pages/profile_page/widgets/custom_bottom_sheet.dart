@@ -38,10 +38,16 @@ class CustomBottomSheet {
                         ),
                       ),
                       backgroundColor: Colors.green[300],
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(milliseconds: 1500),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
+                      ),
+                      action: SnackBarAction(
+                        label: 'Dismiss',
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
                       ),
                     ),
                   );

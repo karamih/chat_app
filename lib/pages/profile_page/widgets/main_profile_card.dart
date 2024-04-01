@@ -27,14 +27,7 @@ class MainProfileCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.black26,
           borderRadius: BorderRadius.circular(15),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black12,
-              spreadRadius: -5,
-              offset: Offset(0, 1),
-              blurRadius: 2,
-            ),
-          ],
+          border: Border.all(color: Colors.black54),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

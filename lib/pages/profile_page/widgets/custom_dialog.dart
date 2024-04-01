@@ -1,3 +1,5 @@
+import 'package:chat_app/config/constants.dart';
+import 'package:chat_app/config/storage/shared_prefrences.dart';
 import 'package:chat_app/pages/profile_page/bloc/avatar/avatar_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,10 +72,16 @@ class CustomDialog {
                           ),
                         ),
                         backgroundColor: Colors.green[300],
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(milliseconds: 1500),
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
+                        ),
+                        action: SnackBarAction(
+                          label: 'Dismiss',
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          },
                         ),
                       ),
                     );
@@ -88,10 +96,16 @@ class CustomDialog {
                           ),
                         ),
                         backgroundColor: Colors.red[300],
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(microseconds: 1500),
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
+                        ),
+                        action: SnackBarAction(
+                          label: 'Dismiss',
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          },
                         ),
                       ),
                     );
@@ -135,10 +149,16 @@ class CustomDialog {
                         ),
                       ),
                       backgroundColor: Colors.green[300],
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(milliseconds: 1500),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
+                      ),
+                      action: SnackBarAction(
+                        label: 'Dismiss',
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
                       ),
                     ),
                   );
@@ -153,10 +173,16 @@ class CustomDialog {
                         ),
                       ),
                       backgroundColor: Colors.red[300],
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(milliseconds: 1500),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
+                      ),
+                      action: SnackBarAction(
+                        label: 'Dismiss',
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
                       ),
                     ),
                   );
@@ -223,10 +249,16 @@ class CustomDialog {
                           ),
                         ),
                         backgroundColor: Colors.green[300],
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(milliseconds: 1500),
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
+                        ),
+                        action: SnackBarAction(
+                          label: 'Dismiss',
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          },
                         ),
                       ),
                     );
@@ -241,10 +273,16 @@ class CustomDialog {
                           ),
                         ),
                         backgroundColor: Colors.red[300],
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(milliseconds: 1500),
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
+                        ),
+                        action: SnackBarAction(
+                          label: 'Dismiss',
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                          },
                         ),
                       ),
                     );
@@ -289,10 +327,16 @@ class CustomDialog {
                         ),
                       ),
                       backgroundColor: Colors.green[300],
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(milliseconds: 1500),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
+                      ),
+                      action: SnackBarAction(
+                        label: 'Dismiss',
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
                       ),
                     ),
                   );
@@ -307,10 +351,16 @@ class CustomDialog {
                         ),
                       ),
                       backgroundColor: Colors.red[300],
-                      duration: const Duration(seconds: 2),
+                      duration: const Duration(milliseconds: 1500),
                       behavior: SnackBarBehavior.floating,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
+                      ),
+                      action: SnackBarAction(
+                        label: 'Dismiss',
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                        },
                       ),
                     ),
                   );
@@ -319,6 +369,99 @@ class CustomDialog {
               child: Text(
                 'Save',
                 style: TextStyle(color: Colors.green[300]),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static void showResetDataDialog(
+      BuildContext context, SharedPrefrencesStorage storage) {
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.blueGrey[900],
+          icon: Icon(
+            Icons.warning,
+            weight: 25,
+            color: Colors.yellow,
+          ),
+          title: const Text(
+            'Reset',
+            style: TextStyle(color: Colors.grey),
+          ),
+          content: Container(
+            padding: const EdgeInsets.all(10),
+            height: height * 0.1,
+            width: width * 0.4,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.grey),
+            ),
+            child: const Center(
+              child: Text(
+                'You will reset your avatar, username and key!',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey),
+              ),
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'Cancel',
+                style: TextStyle(color: Colors.green[300]),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                storage.clear();
+                context.read<AvatarCubit>().setAvatarEvent(Constants.avatar);
+                context
+                    .read<UserNameCubit>()
+                    .setUserNameEvent(Constants.userName);
+                context
+                    .read<GeminiApiKeyCubit>()
+                    .setGeminiApiKeyEvent(Constants.key);
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: const Text(
+                      'App reset.',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    backgroundColor: Colors.green[300],
+                    duration: const Duration(milliseconds: 1500),
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    action: SnackBarAction(
+                      label: 'Dismiss',
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                      },
+                    ),
+                  ),
+                );
+              },
+              child: Text(
+                'Confirm',
+                style: TextStyle(color: Colors.red[300]),
               ),
             ),
           ],

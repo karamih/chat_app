@@ -16,6 +16,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
@@ -39,6 +40,7 @@ class ProfilePage extends StatelessWidget {
         toolbarHeight: 60,
       ),
       backgroundColor: Colors.blueGrey[900],
+// <<<<<<< HEAD
       body: SingleChildScrollView(
         child: SizedBox(
             width: width,

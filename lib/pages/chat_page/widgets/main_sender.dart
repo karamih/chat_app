@@ -2,6 +2,8 @@ import 'package:chat_app/pages/chat_page/bloc/messages/message_cubit.dart';
 import 'package:chat_app/pages/chat_page/bloc/messages/message_status.dart';
 import 'package:chat_app/pages/chat_page/bloc/send_mic_icon_change/sender_icon_cubit.dart';
 import 'package:chat_app/pages/chat_page/model/message.dart';
+import 'package:chat_app/pages/chat_page/repository/image_chat/upload_image.dart';
+import 'package:chat_app/pages/chat_page/widgets/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,44 +30,66 @@ class MainSender extends StatelessWidget {
                 border: Border.all(color: Colors.black26, width: 1.5),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.fromLTRB(20, 0, 3, 0),
                 child: Center(
-                  child: TextField(
-                    controller: textEditingController,
-                    onChanged: (value) {
-                      BlocProvider.of<SenderIconCubit>(context)
-                          .senderIconEvent(value);
-                    },
-                    onSubmitted: (value) {
-                      Message message = Message(
-                          sender: Sender.user,
-                          content: value,
-                          isLoading: MessageStatusReady());
-                      textEditingController.clear();
-                      BlocProvider.of<MessageCubit>(context)
-                          .messageEvent(message);
-                      BlocProvider.of<SenderIconCubit>(context)
-                          .senderIconEvent(value);
-                    },
-                    style: const TextStyle(color: Colors.grey, fontSize: 18),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Message...',
-                      hintStyle: TextStyle(color: Colors.grey),
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: textEditingController,
+                          onChanged: (value) {
+                            BlocProvider.of<SenderIconCubit>(context)
+                                .senderIconEvent(value);
+                          },
+                          onSubmitted: (value) {
+                            Message message = Message(
+                                sender: Sender.user,
+                                content: MessageContentType(content: value),
+                                isLoading: MessageStatusReady());
+                            textEditingController.clear();
+                            BlocProvider.of<MessageCubit>(context)
+                                .messageEvent(message);
+                            BlocProvider.of<SenderIconCubit>(context)
+                                .senderIconEvent(value);
+                          },
+                          style:
+                              const TextStyle(color: Colors.grey, fontSize: 18),
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Message...',
+                            hintStyle: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () async {
+                            final uploadedImage =
+                                await UploadImage().getImageFromGallery();
+                            if (uploadedImage.isEmpty) return;
+                            UploadImageScreen.showUploadImageDialog(
+                                context, uploadedImage);
+                          },
+                          icon: Icon(
+                            Icons.camera_alt,
+                            color: Colors.grey.withOpacity(0.6),
+                          ))
+                    ],
                   ),
                 ),
               ),
             ),
           ),
           const SizedBox(
-            width: 10,
+            width: 5,
           ),
           Container(
             width: height * 0.07,
             height: height * 0.07,
-            decoration: const BoxDecoration(
-                shape: BoxShape.circle, color: Colors.black26),
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.black26,
+                border: Border.all(color: Colors.black26, width: 1.5)),
             child: Center(child: BlocBuilder<SenderIconCubit, SenderIconState>(
               builder: (context, state) {
                 if (state.isEmpty) {
@@ -79,7 +103,8 @@ class MainSender extends StatelessWidget {
                       onPressed: () {
                         Message message = Message(
                             sender: Sender.user,
-                            content: textEditingController.text,
+                            content: MessageContentType(
+                                content: textEditingController.text),
                             isLoading: MessageStatusReady());
                         textEditingController.clear();
                         BlocProvider.of<MessageCubit>(context)

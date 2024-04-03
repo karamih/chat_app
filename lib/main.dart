@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
               storage: storage,
             )
       },
-      home: const SplashScreen(),
+      home: ChatPage(storage: storage),
     );
   }
 }

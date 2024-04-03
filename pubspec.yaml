@@ -43,6 +43,8 @@ dependencies:
   connectivity_plus: ^6.0.1
   flutter_gemini: ^2.0.3
   shared_preferences: ^2.2.2
+  image_picker: ^1.0.7
+  path_provider: ^2.1.2
 
 
 dev_dependencies:

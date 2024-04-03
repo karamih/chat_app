@@ -9,8 +9,4 @@ class MessageState {
     List<Message> updatedMessages = List.from(messages)..add(message);
     return MessageState(messages: updatedMessages);
   }
-
-  // MessageState setLoading({required MessageStatus newMessageStatus}) {
-  //   return MessageState(messages: messages, messageStatus: newMessageStatus);
-  // }
 }

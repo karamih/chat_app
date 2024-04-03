@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chat_app/pages/profile_page/bloc/avatar/avatar_cubit.dart';
 import 'package:chat_app/pages/profile_page/bloc/username/user_name_cubit.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,7 @@ import '../model/message.dart';
 
 class MessageCard extends StatelessWidget {
   final Sender sender;
-  final String? content;
+  final MessageContentType content;
 
   const MessageCard({super.key, required this.sender, required this.content});
 
@@ -35,7 +37,7 @@ class MessageCard extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
               constraints: BoxConstraints(
                   minWidth: width * 0.2,
-                  maxWidth: width * 0.5,
+                  maxWidth: width * 0.6,
                   minHeight: height * 0.05),
               decoration: BoxDecoration(
                   color: Colors.black26,
@@ -55,7 +57,7 @@ class MessageCard extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    content!,
+                    content.content!,
                     style: const TextStyle(color: Colors.white70),
                   ),
                 ],
@@ -65,61 +67,130 @@ class MessageCard extends StatelessWidget {
         ),
       );
     } else {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Container(
-              padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
-              constraints: BoxConstraints(
-                  minWidth: width * 0.2,
-                  maxWidth: width * 0.5,
-                  minHeight: height * 0.05),
-              decoration: BoxDecoration(
-                  color: Colors.black26,
-                  borderRadius: const BorderRadius.all(Radius.circular(10))
-                      .copyWith(bottomRight: const Radius.circular(0))),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  BlocBuilder<UserNameCubit, UserNameState>(
-                    builder: (context, state) {
-                      return Text(
-                        state.userName,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.teal[600]),
-                      );
-                    },
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Text(
-                    content!,
-                    style: const TextStyle(color: Colors.white70),
-                  ),
-                ],
+      if (content.imagePath != null) {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
+                constraints: BoxConstraints(
+                    minWidth: width * 0.2,
+                    maxWidth: width * 0.6,
+                    minHeight: height * 0.05),
+                decoration: BoxDecoration(
+                    color: Colors.black26,
+                    borderRadius: const BorderRadius.all(Radius.circular(10))
+                        .copyWith(bottomRight: const Radius.circular(0))),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    BlocBuilder<UserNameCubit, UserNameState>(
+                      builder: (context, state) {
+                        return Text(
+                          state.userName,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.teal[600]),
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    SizedBox(
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(15),
+                          child: Image.file(File(content.imagePath!))),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      content.content!,
+                      style: const TextStyle(color: Colors.white70),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    )
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(
-              width: 8,
-            ),
-            Container(
-                width: width * 0.10,
-                height: width * 0.10,
-                decoration: const BoxDecoration(shape: BoxShape.circle),
-                child: BlocBuilder<AvatarCubit, AvatarState>(
-                  builder: (context, state) {
-                    return SvgPicture.asset(state.avatarPath);
-                  },
-                ))
-          ],
-        ),
-      );
+              const SizedBox(
+                width: 8,
+              ),
+              Container(
+                  width: width * 0.10,
+                  height: width * 0.10,
+                  decoration: const BoxDecoration(shape: BoxShape.circle),
+                  child: BlocBuilder<AvatarCubit, AvatarState>(
+                    builder: (context, state) {
+                      return SvgPicture.asset(state.avatarPath);
+                    },
+                  ))
+            ],
+          ),
+        );
+      } else {
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(5, 0, 5, 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Container(
+                padding: const EdgeInsets.fromLTRB(8, 5, 8, 5),
+                constraints: BoxConstraints(
+                    minWidth: width * 0.2,
+                    maxWidth: width * 0.6,
+                    minHeight: height * 0.05),
+                decoration: BoxDecoration(
+                    color: Colors.black26,
+                    borderRadius: const BorderRadius.all(Radius.circular(10))
+                        .copyWith(bottomRight: const Radius.circular(0))),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    BlocBuilder<UserNameCubit, UserNameState>(
+                      builder: (context, state) {
+                        return Text(
+                          state.userName,
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.teal[600]),
+                        );
+                      },
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      content.content!,
+                      style: const TextStyle(color: Colors.white70),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Container(
+                  width: width * 0.10,
+                  height: width * 0.10,
+                  decoration: const BoxDecoration(shape: BoxShape.circle),
+                  child: BlocBuilder<AvatarCubit, AvatarState>(
+                    builder: (context, state) {
+                      return SvgPicture.asset(state.avatarPath);
+                    },
+                  ))
+            ],
+          ),
+        );
+      }
     }
   }
 }

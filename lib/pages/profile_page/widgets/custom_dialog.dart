@@ -1,4 +1,4 @@
-import 'package:chat_app/config/constants.dart';
+import 'package:chat_app/config/utils/constants.dart';
 import 'package:chat_app/config/storage/shared_prefrences.dart';
 import 'package:chat_app/pages/profile_page/bloc/avatar/avatar_cubit.dart';
 import 'package:flutter/material.dart';
@@ -387,7 +387,7 @@ class CustomDialog {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.blueGrey[900],
-          icon: Icon(
+          icon: const Icon(
             Icons.warning,
             weight: 25,
             color: Colors.yellow,

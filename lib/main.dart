@@ -7,7 +7,7 @@ import 'package:chat_app/pages/profile_page/bloc/avatar/avatar_cubit.dart';
 import 'package:chat_app/pages/profile_page/bloc/username/user_name_cubit.dart';
 import 'package:chat_app/pages/profile_page/profile_page.dart';
 import 'package:chat_app/pages/splash/bloc/splash_cubit.dart';
-import 'package:chat_app/pages/splash/splash_scrren.dart';
+import 'package:chat_app/pages/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

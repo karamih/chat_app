@@ -3,7 +3,6 @@ import 'package:chat_app/pages/chat_page/bloc/messages/message_cubit.dart';
 import 'package:chat_app/pages/chat_page/bloc/messages/message_status.dart';
 import 'package:chat_app/pages/chat_page/widgets/main_sender.dart';
 import 'package:chat_app/pages/chat_page/widgets/message_card.dart';
-import 'package:chat_app/pages/home_page/home_page.dart';
 import 'package:chat_app/pages/profile_page/bloc/api_key/gemini_api_key_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,9 +21,11 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
+
+    Gemini.init(apiKey: storage.getKey());
+
     return BlocBuilder<GeminiApiKeyCubit, GeminiApiKeyState>(
       builder: (context, state) {
-        Gemini.init(apiKey: storage.getKey());
         return Scaffold(
             appBar: AppBar(
               title: const Text(

@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../constants.dart';
+import '../utils/constants.dart';
 
 class SharedPrefrencesStorage {
   late SharedPreferences prefs;

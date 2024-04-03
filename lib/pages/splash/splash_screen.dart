@@ -125,7 +125,8 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(
       const Duration(seconds: 2),
       () {
-        Navigator.pushNamed(context, HomePage.routeName);
+        Navigator.pushNamedAndRemoveUntil(context, HomePage.routeName,
+            ModalRoute.withName(HomePage.routeName));
       },
     );
   }

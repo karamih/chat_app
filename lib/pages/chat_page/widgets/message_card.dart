@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:chat_app/pages/profile_page/bloc/avatar/avatar_cubit.dart';
-import 'package:chat_app/pages/profile_page/bloc/username/user_name_cubit.dart';
+import 'package:chatio/pages/profile_page/bloc/avatar/avatar_cubit.dart';
+import 'package:chatio/pages/profile_page/bloc/username/user_name_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';

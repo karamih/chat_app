@@ -1,6 +1,6 @@
 
 import 'package:bloc/bloc.dart';
-import 'package:chat_app/pages/splash/repository/connection_repository.dart';
+import 'package:chatio/pages/splash/repository/connection_repository.dart';
 import 'package:meta/meta.dart';
 
 part 'splash_state.dart';

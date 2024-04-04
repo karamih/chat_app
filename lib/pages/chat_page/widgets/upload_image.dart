@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:chat_app/pages/chat_page/bloc/messages/message_cubit.dart';
-import 'package:chat_app/pages/chat_page/bloc/messages/message_status.dart';
-import 'package:chat_app/pages/chat_page/model/message.dart';
+import 'package:chatio/pages/chat_page/bloc/messages/message_cubit.dart';
+import 'package:chatio/pages/chat_page/bloc/messages/message_status.dart';
+import 'package:chatio/pages/chat_page/model/message.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

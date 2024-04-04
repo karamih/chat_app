@@ -1,10 +1,10 @@
-import 'package:chat_app/pages/chat_page/bloc/messages/message_cubit.dart';
-import 'package:chat_app/pages/chat_page/bloc/messages/message_status.dart';
-import 'package:chat_app/pages/chat_page/bloc/send_mic_icon_change/sender_icon_cubit.dart';
-import 'package:chat_app/pages/chat_page/bloc/speech_recognition/speech_recognition_cubit.dart';
-import 'package:chat_app/pages/chat_page/model/message.dart';
-import 'package:chat_app/pages/chat_page/repository/image_chat/upload_image.dart';
-import 'package:chat_app/pages/chat_page/widgets/upload_image.dart';
+import 'package:chatio/pages/chat_page/bloc/messages/message_cubit.dart';
+import 'package:chatio/pages/chat_page/bloc/messages/message_status.dart';
+import 'package:chatio/pages/chat_page/bloc/send_mic_icon_change/sender_icon_cubit.dart';
+import 'package:chatio/pages/chat_page/bloc/speech_recognition/speech_recognition_cubit.dart';
+import 'package:chatio/pages/chat_page/model/message.dart';
+import 'package:chatio/pages/chat_page/repository/image_chat/upload_image.dart';
+import 'package:chatio/pages/chat_page/widgets/upload_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

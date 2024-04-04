@@ -1,5 +1,5 @@
-import 'package:chat_app/pages/home_page/home_page.dart';
-import 'package:chat_app/pages/splash/bloc/splash_cubit.dart';
+import 'package:chatio/pages/home_page/home_page.dart';
+import 'package:chatio/pages/splash/bloc/splash_cubit.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     delay: Duration(milliseconds: 1200),
                     slidingBeginOffset: Offset(0, 1),
                     child: Text(
-                      "Chattito",
+                      "Chatio",
                       style: TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.bold,

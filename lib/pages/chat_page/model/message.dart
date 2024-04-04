@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:chat_app/pages/chat_page/bloc/messages/message_status.dart';
+import 'package:chatio/pages/chat_page/bloc/messages/message_status.dart';
 
 enum Sender {
   user,

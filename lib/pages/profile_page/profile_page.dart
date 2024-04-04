@@ -1,11 +1,13 @@
-import 'package:chat_app/config/storage/shared_prefrences.dart';
-import 'package:chat_app/pages/profile_page/utils/avatars.dart';
-import 'package:chat_app/pages/profile_page/widgets/custom_bottom_sheet.dart';
-import 'package:chat_app/pages/profile_page/widgets/custom_dialog.dart';
-import 'package:chat_app/pages/profile_page/widgets/main_profile_card.dart';
-import 'package:chat_app/pages/profile_page/widgets/restart.dart';
+import 'package:chatio/config/storage/shared_prefrences.dart';
+import 'package:chatio/config/utils/constants.dart';
+import 'package:chatio/pages/profile_page/utils/avatars.dart';
+import 'package:chatio/pages/profile_page/widgets/custom_bottom_sheet.dart';
+import 'package:chatio/pages/profile_page/widgets/custom_dialog.dart';
+import 'package:chatio/pages/profile_page/widgets/main_profile_card.dart';
+import 'package:chatio/pages/profile_page/widgets/restart.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProfilePage extends StatelessWidget {
   static const routeName = '/profile_page';
@@ -99,9 +101,30 @@ class ProfilePage extends StatelessWidget {
                         CustomDialog.showResetDataDialog(context, storage),
                   ),
                 ),
+                const SizedBox(height: 25,),
+                TextButton(
+                  onPressed: () {
+                    _launchUrl();
+                  },
+                  child: Text(
+                    'How to get free key?',
+                    style: TextStyle(
+                        color: Colors.blue[300],
+                        fontWeight: FontWeight.w500,
+                        fontSize: 11,
+                        letterSpacing: 2),
+                  ),
+                )
               ],
             )),
       ),
     );
+  }
+
+  Future<void> _launchUrl() async {
+    final Uri url = Uri.parse(Constants.getApiUrl);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
   }
 }

@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
-import 'package:chat_app/pages/chat_page/bloc/messages/message_status.dart';
+import 'package:chatio/pages/chat_page/model/message.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 
-import '../../model/message.dart';
+import 'message_status.dart';
 
 part 'message_state.dart';
 

@@ -1,9 +1,12 @@
-import 'package:chat_app/config/storage/shared_prefrences.dart';
-import 'package:chat_app/pages/chat_page/chat_page.dart';
-import 'package:chat_app/pages/home_page/widgets/main_card.dart';
-import 'package:chat_app/pages/profile_page/profile_page.dart';
+import 'package:chatio/config/storage/shared_prefrences.dart';
+import 'package:chatio/pages/chat_page/chat_page.dart';
+import 'package:chatio/pages/home_page/widgets/main_card.dart';
+import 'package:chatio/pages/profile_page/profile_page.dart';
 import 'package:delayed_display/delayed_display.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../../config/utils/constants.dart';
 
 class HomePage extends StatelessWidget {
   static String routeName = '/home_page';
@@ -18,7 +21,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Chattito",
+            "Chatio",
             style: TextStyle(
                 color: Colors.grey,
                 fontWeight: FontWeight.bold,
@@ -110,19 +113,30 @@ class HomePage extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         topRight: Radius.circular(20))),
-                child: const Center(
-                  child: Text(
-                    'https://2byte.tech',
+                child: Center(
+                    child: TextButton(
+                  onPressed: () {
+                    _launchUrl();
+                  },
+                  child: const Text(
+                    '2Byte',
                     style: TextStyle(
                         color: Colors.grey,
                         fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                        letterSpacing: 2),
+                        fontSize: 16,
+                        letterSpacing: 6),
                   ),
-                ),
+                )),
               )
             ],
           ),
         ));
+  }
+
+  Future<void> _launchUrl() async {
+    final Uri url = Uri.parse(Constants.companyUrl);
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
+    }
   }
 }

@@ -1,6 +1,7 @@
 import 'package:chat_app/pages/chat_page/bloc/messages/message_cubit.dart';
 import 'package:chat_app/pages/chat_page/bloc/messages/message_status.dart';
 import 'package:chat_app/pages/chat_page/bloc/send_mic_icon_change/sender_icon_cubit.dart';
+import 'package:chat_app/pages/chat_page/bloc/speech_recognition/speech_recognition_cubit.dart';
 import 'package:chat_app/pages/chat_page/model/message.dart';
 import 'package:chat_app/pages/chat_page/repository/image_chat/upload_image.dart';
 import 'package:chat_app/pages/chat_page/widgets/upload_image.dart';
@@ -91,12 +92,46 @@ class MainSender extends StatelessWidget {
                 color: Colors.black26,
                 border: Border.all(color: Colors.black26, width: 1.5)),
             child: Center(child: BlocBuilder<SenderIconCubit, SenderIconState>(
-              builder: (context, state) {
-                if (state.isEmpty) {
-                  return IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.mic),
-                    color: Colors.grey,
+              builder: (context, senderIconState) {
+                if (senderIconState.isEmpty) {
+                  return BlocBuilder<SpeechRecognitionCubit,
+                      SpeechRecognitionState>(
+                    builder: (context, speechRecognitionState) {
+                      return IconButton(
+                        onPressed: () {
+                          if (speechRecognitionState.status ==
+                              SpeechRecognitionStatus.listening) {
+                            context
+                                .read<SpeechRecognitionCubit>()
+                                .stopListeningEvent();
+                          } else if (speechRecognitionState.status ==
+                                  SpeechRecognitionStatus.stopped ||
+                              speechRecognitionState.status ==
+                                  SpeechRecognitionStatus.initial) {
+                            context
+                                .read<SpeechRecognitionCubit>()
+                                .startListeningEvent();
+                            if (speechRecognitionState.status ==
+                                    SpeechRecognitionStatus.stopped ||
+                                speechRecognitionState.status ==
+                                    SpeechRecognitionStatus.error) {
+                              Message message = Message(
+                                  sender: Sender.user,
+                                  content: MessageContentType(
+                                      content: speechRecognitionState.words),
+                                  isLoading: MessageStatusReady());
+                              BlocProvider.of<MessageCubit>(context)
+                                  .messageEvent(message);
+                            }
+                          }
+                        },
+                        icon: speechRecognitionState.status ==
+                                SpeechRecognitionStatus.listening
+                            ? const Icon(Icons.mic_off)
+                            : const Icon(Icons.mic),
+                        color: Colors.grey,
+                      );
+                    },
                   );
                 } else {
                   return IconButton(

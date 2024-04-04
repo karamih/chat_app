@@ -56,4 +56,9 @@ class MessageCubit extends Cubit<MessageState> {
                   isLoading: MessageStatusReady()))));
     }
   }
+
+  void deleteChatEvent(){
+    state.messages.clear();
+    emit(const MessageState(messages: []));
+  }
 }

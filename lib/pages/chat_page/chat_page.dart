@@ -46,6 +46,15 @@ class ChatPage extends StatelessWidget {
               bottom: const PreferredSize(
                   preferredSize: Size(0, 20), child: SizedBox()),
               toolbarHeight: 60,
+              actions: [
+                Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: IconButton(
+                        onPressed: () {
+                          context.read<MessageCubit>().deleteChatEvent();
+                        },
+                        icon: const Icon(Icons.delete_forever_rounded)))
+              ],
             ),
             backgroundColor: Colors.blueGrey[900],
             body: Container(
